@@ -1,0 +1,13 @@
+COMO ENVIAR AO GITHUB
+
+1. Extraia este ZIP no computador. Nao envie o ZIP fechado.
+2. Abra seu repositorio no GitHub e escolha Add file > Upload files.
+3. Primeiro arraste apenas a pasta public e conclua em Commit changes.
+4. Repita o upload com as demais pastas e arquivos extraidos.
+5. As pastas app, components, lib, scripts, public e o arquivo package.json devem ficar diretamente na raiz do repositorio.
+
+Este pacote contem 98 arquivos. Nao inclui dependencias instaladas, senhas ou arquivos do macOS.
+
+O ZIP anterior passou na verificacao de integridade. A mensagem generica do GitHub nao identifica qual arquivo falhou. Se continuar, informe o nome exato do arquivo destacado ou envie uma captura da mensagem.
+
+A hospedagem funcional usa Cloudflare D1/R2; a Vercel exige adaptar banco e armazenamento, conforme README.md.
