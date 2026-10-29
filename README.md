@@ -26,3 +26,9 @@ Node.js 22.13+. Configure `.local-access.json` com `salt` e `hash` PBKDF2-SHA256
 `npm test` verifica o acesso, o limite de propostas, a edição, publicação e exclusão usando um banco SQLite em memória.
 
 A Vercel recebe somente os arquivos estáticos de `web`. O preset é fixado em Other (`framework: null`). A API persistente é gerada como Worker apenas para o serviço WAKE, fora da compilação da Vercel.
+
+## Compartilhamento
+
+O painel copia links curtos em `/s/` com código de 16 caracteres (96 bits). Os links antigos em `/p/` continuam válidos. Ambos consultam o mesmo registro, e excluir a proposta desativa os dois. Não é necessário migrar o banco.
+
+A prévia de compartilhamento é entregue no HTML pelo serviço WAKE, com título WAKE Propostas, nome do cliente na descrição e logo em PNG quadrado. As rotas de compartilhamento são encaminhadas diretamente ao serviço na Vercel para permitir leitura por robôs sem executar JavaScript. O aplicativo de mensagens decide a apresentação final e pode guardar uma prévia em cache.

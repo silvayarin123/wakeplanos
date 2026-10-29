@@ -7,6 +7,14 @@
       "destination": "https://wake-propostas.andrezacavichioli.chatgpt.site/api/:path*"
     },
     {
+      "source": "/s/:code",
+      "destination": "https://wake-propostas.andrezacavichioli.chatgpt.site/s/:code"
+    },
+    {
+      "source": "/p/:token",
+      "destination": "https://wake-propostas.andrezacavichioli.chatgpt.site/p/:token"
+    },
+    {
       "source": "/painel",
       "destination": "/index.html"
     },
@@ -16,10 +24,6 @@
     },
     {
       "source": "/studio",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/p/:token",
       "destination": "/index.html"
     },
     {
