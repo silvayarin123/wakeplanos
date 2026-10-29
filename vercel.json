@@ -1,0 +1,30 @@
+{
+  "buildCommand": "node scripts/build.mjs",
+  "outputDirectory": "web",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://wake-propostas.andrezacavichioli.chatgpt.site/api/:path*"
+    },
+    {
+      "source": "/painel",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/editar",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/studio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/p/:token",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/modelo",
+      "destination": "/index.html"
+    }
+  ]
+}

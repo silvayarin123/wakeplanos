@@ -1,1 +1,0 @@
-ALTER TABLE `wake_brands` ADD `dark` integer DEFAULT 0 NOT NULL;

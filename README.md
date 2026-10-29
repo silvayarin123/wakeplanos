@@ -1,42 +1,26 @@
-# WAKE — Propostas comerciais
+# WAKE — Propostas leves
 
-Sistema responsivo para criar, editar, publicar e excluir até 10 propostas comerciais ativas. O acesso protegido começa em `/editar` e direciona para `/painel`. Cada proposta publicada recebe um link individual para o cliente.
+Interface em HTML, CSS e JavaScript, sem React, Next, dependências instaladas ou pasta `app`.
 
-## Conteúdo do modelo
+- Palavra de acesso validada no servidor, configurada fora do repositório.
+- Até 10 propostas ativas, cada uma com seu link público.
+- Edição direta de cliente, logo, escopo, entregáveis e investimento.
+- Adição/remoção de itens, exclusão de propostas e cópia de links.
+- 22 logos de referência, marca WAKE branca e fonte Inter local preservadas.
+- Dados e links anteriores preservados no D1/R2 do serviço existente.
 
-- Identificação e logo do cliente.
-- Escopo da parceria com título editável.
-- Entregáveis individuais com inclusão e remoção de itens.
-- Investimento exibido em quadrante separado.
-- Faixa contínua com 22 marcas de referência.
-- Visual grafite responsivo para celular e computador.
+## GitHub e Vercel
 
-## Desenvolvimento
+Importe este repositório na Vercel. Use preset **Other**, comando `node scripts/build.mjs` e saída `web` (já definidos em `vercel.json`). Não há dependências para instalar.
 
-Requisitos: Node.js 22.13+ e pnpm.
+A interface estática é hospedada na Vercel, que encaminha as chamadas da API ao serviço existente. As propostas, sessões e imagens ficam no serviço WAKE existente em `wake-propostas.andrezacavichioli.chatgpt.site`. Esse serviço precisa continuar ativo. Nenhuma chave administrativa fica no navegador ou neste repositório. A Vercel não cria um banco separado nem duplica os dados.
 
-```bash
-pnpm install
-pnpm dev
-```
+## Arquivos
 
-Verificação e compilação:
+`src/` contém a interface, API e um único catálogo de imagens/fontes incorporadas. `scripts/build.mjs` cria o Worker do Sites e a interface estática para Vercel. `migrations.sql` documenta o esquema inicial para instalações novas; não execute novamente em banco existente.
 
-```bash
-node node_modules/typescript/bin/tsc --noEmit
-pnpm build
-```
+## Desenvolvimento local
 
-## GitHub
+Node.js 22.13+. Configure `.local-access.json` com `salt` e `hash` PBKDF2-SHA256 de uma palavra de teste (100.000 iterações); este arquivo fica fora do Git. Execute `npm run dev`. O banco local fica em `.local-data/`, separado da produção.
 
-Extraia o ZIP, crie um repositório e envie todos os arquivos. Arquivos de segredo, dependências instaladas, banco local e builds não estão incluídos.
-
-## Hospedagem e Vercel
-
-A versão funcional publicada usa Cloudflare Workers, D1 e R2. Os bindings esperados são `DB` e `BUCKET`; as migrations estão em `drizzle/`. A senha é configurada no servidor pelo segredo `EDITOR_PASSWORD_CONFIG`, contendo apenas `salt` e hash PBKDF2-SHA256.
-
-O código pode ser armazenado no GitHub normalmente. Para manter login, propostas e uploads na Vercel, substitua D1/R2 por um banco e armazenamento compatíveis com Vercel, como Postgres e Blob. Publicar o projeto na Vercel sem essa adaptação não preserva o painel funcional. Para executar sem alterações, use Cloudflare Workers/Sites.
-
-## Segurança
-
-Não inclua senhas em arquivos `.env` versionados. A senha em texto puro não faz parte deste ZIP. O login usa cookie HttpOnly e as rotas de edição exigem sessão válida.
+`npm test` verifica o acesso, o limite de propostas, a edição, publicação e exclusão usando um banco SQLite em memória.
