@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFile,writeFile} from 'node:fs/promises';
-import {api,hashWord} from '../src/server.mjs';
+import {api,hashWord} from '../src/data-api.mjs';
 const sqlite=new DatabaseSync(':memory:');sqlite.exec(await readFile('migrations.sql','utf8'));
 const DB={prepare(sql){let args=[];return {bind(...v){args=v;return this;},async first(){return sqlite.prepare(sql).get(...args)||null;},async all(){return {results:sqlite.prepare(sql).all(...args)};},async run(){return {meta:sqlite.prepare(sql).run(...args)};}};}};
 const salt='11'.repeat(24),word='test123',hash=await hashWord(word,salt),env={DB,EDITOR_PASSWORD_CONFIG:JSON.stringify({salt,hash}),BUCKET:{}};

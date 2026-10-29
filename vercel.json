@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node scripts/build.mjs",
+  "buildCommand": "node scripts/build.mjs --static",
   "outputDirectory": "web",
   "rewrites": [
     {
@@ -26,5 +26,7 @@
       "source": "/modelo",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "framework": null,
+  "installCommand": "node -e \"process.exit(0)\""
 }
